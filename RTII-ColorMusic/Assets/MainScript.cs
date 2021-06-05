@@ -87,6 +87,7 @@ public class MainScript : MonoBehaviour
     }
     void Start()
     {
+       
       
         defaultBackground = background.texture;
         WebCamDevice[] devices = WebCamTexture.devices;
@@ -169,7 +170,7 @@ public class MainScript : MonoBehaviour
             
 
             frequency=scale(0, 3, 440, 4000, combined);
-            print(scale(0, 3, 440, 4000, combined));
+            //print(scale(0, 3, 440, 4000, combined));
             
 
             

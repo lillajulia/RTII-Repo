@@ -12,7 +12,10 @@ public class Tremolo : MonoBehaviour
 
     [Range(0, 3)] public float depth = 1f;
 
-    [Range(2000, 8000)] public int effectRate = 2000;
+    public float rangeTremoloStart = 2000;
+    public float rangeTremoloEnd = 8000;
+
+    [Range(2000, 8000)] public float effectRate = 2000;
 
     static int counter;
     static int tester;
@@ -42,7 +45,7 @@ public class Tremolo : MonoBehaviour
 
     private void Update()
     {
-     
+        Accellorometer();
     }
 
     void OnAudioFilterRead(float[] data, int channels)
@@ -91,5 +94,21 @@ public class Tremolo : MonoBehaviour
         {
             filterOn = false;
         }
+
     }
+
+    public void Accellorometer()
+    {
+        Debug.Log(Input.acceleration.x);
+        float rotation = Input.acceleration.x;
+        effectRate = map(rotation, -1.0f, 1.0f, rangeTremoloStart, rangeTremoloEnd);
+        Debug.Log(effectRate);
+
+    }
+
+    float map(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
+
 }
