@@ -120,63 +120,97 @@ public class MainScript : MonoBehaviour
         
         
     }
-    
+
 
     void Update()
+    {
+
+        if (!IsCameraAvaliable)
         {
-
-            if (!IsCameraAvaliable)
-            {
-                return;
-            }
-
-            float ratio = (float) PhoneCamera.width / (float) PhoneCamera.height;
-            fit.aspectRatio = ratio;
-
-            float scaleY = PhoneCamera.videoVerticallyMirrored ? -1f : 1f;
-            background.rectTransform.localScale = new Vector3(1f, scaleY, 1f);
-
-            int orient = -PhoneCamera.videoRotationAngle;
-
-            background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
-
-            PhoneCamera.GetPixel(CenterX, CenterY);
-
-            float RedAvg = 0;
-            float GreenAvg =0;
-            float BlueAvg = 0;
-            for (int i = -20; i <= 20; i++)
-            {
-                for (int j = -20; j <= 20; j++)
-                {
-                    RedAvg += (PhoneCamera.GetPixel(CenterX - i, CenterY - j).r);
-                    GreenAvg += (PhoneCamera.GetPixel(CenterX - i, CenterY - j).g);
-                    BlueAvg += (PhoneCamera.GetPixel(CenterX - i, CenterY - j).b);
-                }
-            }
-
-            RedAvg = RedAvg / (41*41);
-            GreenAvg = GreenAvg / (41*41);
-            BlueAvg = BlueAvg / (41*41);
-            
-
-            //print(PhoneCamera.GetPixel(CenterX, CenterY));  
-            
-            //float Red = PhoneCamera.GetPixel(CenterX,CenterY).r;
-            //float Green = PhoneCamera.GetPixel(CenterX,CenterY).g; 
-            //float Blue = PhoneCamera.GetPixel(CenterX,CenterY).b; 
-            
-            float combined = RedAvg + GreenAvg + BlueAvg;
-            
-
-            frequency=scale(0, 3, 440, 4000, combined);
-            //print(scale(0, 3, 440, 4000, combined));
-            
-
-            
-
-
-
-
+            return;
         }
+
+        float ratio = (float) PhoneCamera.width / (float) PhoneCamera.height;
+        fit.aspectRatio = ratio;
+
+        float scaleY = PhoneCamera.videoVerticallyMirrored ? -1f : 1f;
+        background.rectTransform.localScale = new Vector3(1f, scaleY, 1f);
+
+        int orient = -PhoneCamera.videoRotationAngle;
+
+        background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+
+        PhoneCamera.GetPixel(CenterX, CenterY);
+
+        float RedAvg = 0;
+        float GreenAvg = 0;
+        float BlueAvg = 0;
+        for (int i = -20; i <= 20; i++)
+        {
+            for (int j = -20; j <= 20; j++)
+            {
+                RedAvg += (PhoneCamera.GetPixel(CenterX - i, CenterY - j).r);
+                GreenAvg += (PhoneCamera.GetPixel(CenterX - i, CenterY - j).g);
+                BlueAvg += (PhoneCamera.GetPixel(CenterX - i, CenterY - j).b);
+            }
+        }
+
+        RedAvg = (RedAvg / (41 * 41)) * 255;
+        GreenAvg = (GreenAvg / (41 * 41)) * 255;
+        BlueAvg = (BlueAvg / (41 * 41)) * 255;
+
+        print(PhoneCamera.GetPixel(CenterX, CenterY));  
+   
+
+        //float Red = PhoneCamera.GetPixel(CenterX,CenterY).r;
+        //float Green = PhoneCamera.GetPixel(CenterX,CenterY).g; 
+        //float Blue = PhoneCamera.GetPixel(CenterX,CenterY).b; 
+
+        //print(RedAvg);
+        //print(BlueAvg);
+        //print(GreenAvg);
+        //float combined = RedAvg + GreenAvg + BlueAvg;
+
+        //frequency=scale(0, 3, 440, 4000, combined);
+        //print(scale(0, 3, 440, 4000, combined));
+        // print("RED"); 
+        // print(RedAvg);
+        // print("GREEN"); 
+        // print(GreenAvg);
+        // print("BLUE"); 
+        // print(BlueAvg);
+
+
+        if (RedAvg <= 115 && GreenAvg <= 50 && BlueAvg <= 50)
+        {
+            frequency = 349.2f;
+            print("F");
+        }
+        else if (RedAvg >= 116 && GreenAvg <= 50 && BlueAvg <= 50)
+        {
+            frequency = 370;
+            print("Fsharp");
+        }
+        else if (RedAvg >= 179 && GreenAvg <= 50 && BlueAvg <= 50)
+        {
+            frequency = 392;
+            print("G");
+        }
+        else if (RedAvg >= 215 && GreenAvg <= 50 && BlueAvg <= 50)
+        {
+            frequency = 415.3f;
+            print("Gsharp");
+        }
+        else if (RedAvg >= 240 && GreenAvg >= 99 && BlueAvg <= 50)
+        {
+            frequency = 440;
+            print("A");
+        }
+
+
+
+
+
+
+    }
     }

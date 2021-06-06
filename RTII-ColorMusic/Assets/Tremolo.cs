@@ -85,7 +85,7 @@ public class Tremolo : MonoBehaviour
 
     public void onoff()
     {
-        print("BRUH");
+       // print("BRUH");
         if (!filterOn)
         {
             filterOn = true;
@@ -99,10 +99,10 @@ public class Tremolo : MonoBehaviour
 
     public void Accellorometer()
     {
-        Debug.Log(Input.acceleration.x);
+        //Debug.Log(Input.acceleration.x);
         float rotation = Input.acceleration.x;
         effectRate = map(rotation, -1.0f, 1.0f, rangeTremoloStart, rangeTremoloEnd);
-        Debug.Log(effectRate);
+        //Debug.Log(effectRate);
 
     }
 
