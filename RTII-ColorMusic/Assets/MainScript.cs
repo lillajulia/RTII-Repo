@@ -23,7 +23,7 @@ public class MainScript : MonoBehaviour
     
     
     
-    private Color GetPixel;
+
 
     private bool IsCameraAvaliable;
 
@@ -159,8 +159,8 @@ public class MainScript : MonoBehaviour
         GreenAvg = (GreenAvg / (41 * 41)) * 255;
         BlueAvg = (BlueAvg / (41 * 41)) * 255;
 
-        print(PhoneCamera.GetPixel(CenterX, CenterY));  
-   
+       
+
 
         //float Red = PhoneCamera.GetPixel(CenterX,CenterY).r;
         //float Green = PhoneCamera.GetPixel(CenterX,CenterY).g; 
@@ -181,34 +181,43 @@ public class MainScript : MonoBehaviour
         // print(BlueAvg);
 
 
-        if (RedAvg <= 115 && GreenAvg <= 50 && BlueAvg <= 50)
+        if (RedAvg <= 80  && GreenAvg <= 80 && BlueAvg <= 80)
         {
             frequency = 349.2f;
             print("F");
         }
-        else if (RedAvg >= 116 && GreenAvg <= 50 && BlueAvg <= 50)
-        {
-            frequency = 370;
-            print("Fsharp");
-        }
-        else if (RedAvg >= 179 && GreenAvg <= 50 && BlueAvg <= 50)
+        else if (RedAvg >= 170 && GreenAvg <= 75 && BlueAvg <= 75)
         {
             frequency = 392;
             print("G");
         }
-        else if (RedAvg >= 215 && GreenAvg <= 50 && BlueAvg <= 50)
-        {
-            frequency = 415.3f;
-            print("Gsharp");
-        }
-        else if (RedAvg >= 240 && GreenAvg >= 99 && BlueAvg <= 50)
+        else if (RedAvg >= 170 && GreenAvg >= 170  && BlueAvg <= 75)
         {
             frequency = 440;
             print("A");
         }
-
-
-
+        else if (RedAvg <= 75 && GreenAvg >= 170 && BlueAvg <= 75)
+        {
+            frequency = 493.9f;
+            print("B");
+        }
+        else if (RedAvg <= 75 && GreenAvg <= 75 && BlueAvg >= 170)
+        { 
+            frequency = 523.3f;
+            print("C");
+        }
+        else if (RedAvg >= 170 && GreenAvg <= 75 && BlueAvg >= 170)
+        { 
+            frequency = 587.3f;
+            print("D");
+        }
+        else if (RedAvg >= 170 && GreenAvg >= 170 && BlueAvg >= 170)
+        { 
+            frequency = 659.3f;
+            print("E");
+        }
+        
+        
 
 
 
