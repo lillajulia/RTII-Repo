@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-//sauces : https://www.youtube.com/watch?v=c6NXkZWXHnc
+//Source : https://www.youtube.com/watch?v=c6NXkZWXHnc
+//Source: https://www.benjaminoutram.com/blog/2018/7/13/procedural-audio-in-unity-noise-and-tone
 public class MainScript : MonoBehaviour
 
 {

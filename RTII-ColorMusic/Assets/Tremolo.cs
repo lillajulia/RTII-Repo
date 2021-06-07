@@ -4,6 +4,8 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
+//Source: https://assetstore.unity.com/packages/tools/audio/sound-filters-and-effects-19328
 public class Tremolo : MonoBehaviour
 {
     public bool filterOn = false;
