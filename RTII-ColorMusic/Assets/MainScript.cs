@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -26,6 +27,8 @@ public class MainScript : MonoBehaviour
     public float gain = 0.05f;
     private float increment;
     private float phase;
+
+    public Text notes;
 
 
     private bool IsCameraAvaliable;
@@ -150,36 +153,43 @@ public class MainScript : MonoBehaviour
         {
             frequency = 261.626f;
             print("C4");
+            UpdateNote("C"+(octave+3));
         }
         else if (H <= 30 && S >= 40 && V >= 40)
         {
             frequency = 293.665f;
             print("D4");
+            UpdateNote("D"+(octave+3));
         }
         else if (H >= 31 && H <= 70 && S >= 40 && V >= 40)
         {
             frequency = 329.628f;
             print("E4");
+            UpdateNote("E"+(octave+3));
         }
         else if (H >= 71 && H <= 150 && S >= 40 && V >= 40)
         {
             frequency = 349.228f;
             print("F4");
+            UpdateNote("F"+(octave+3));
         }
         else if (H >= 151 && H <= 240 && S >= 40 && V >= 40)
         {
             frequency = 391.995f;
             print("G4");
+            UpdateNote("G"+(octave+3));
         }
         else if (H >= 241 && H <= 330 && S >= 40 && V >= 40)
         {
             frequency = 440;
             print("A4");
+            UpdateNote("A"+(octave+3));
         }
         else if (H >= 331 && H <= 360 && S >= 40 && V >= 40)
         {
             frequency = 493.883f;
             print("B4");
+            UpdateNote("B"+(octave+3));
         }
 
         frequency = frequency * octave;
@@ -212,6 +222,10 @@ public class MainScript : MonoBehaviour
             gain = 0.05f; 
             muteButton.image.sprite = EnabledMuteSprite;
         }
+    }
 
+    public void UpdateNote(String note)
+    {
+        notes.text = note;
     }
 }
