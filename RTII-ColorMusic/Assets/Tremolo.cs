@@ -6,9 +6,12 @@ using UnityEngine.EventSystems;
 
 public class Tremolo : MonoBehaviour
 {
-    public Button button;
-    
     public bool filterOn = false;
+
+    public Button TremoloButton;
+    public Sprite DisabledTremoloSprite;
+    public Sprite EnabledTremoloSprite;
+
 
     [Range(0, 3)] public float depth = 1f;
 
@@ -20,28 +23,15 @@ public class Tremolo : MonoBehaviour
     static int counter;
     static int tester;
     static float offset;
-	
-	
-    public float scale(float OldMin, float OldMax, float NewMin, float NewMax, float OldValue){
- 
-        float OldRange = (OldMax - OldMin);
-        float NewRange = (NewMax - NewMin);
-        float NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin;
- 
-        return(NewValue);
-    }
-
-	
 
     void Start()
     {
         counter = 1;
         tester = 0;
         offset = 1 - depth;
-        button.onClick.AddListener(onoff);
-		
+        TremoloButton.onClick.AddListener(onOff);
     }
-	
+
 
     private void Update()
     {
@@ -71,7 +61,6 @@ public class Tremolo : MonoBehaviour
 
     void tremoloShift()
     {
-
         tester += counter;
         if (tester > effectRate)
         {
@@ -83,32 +72,29 @@ public class Tremolo : MonoBehaviour
         }
     }
 
-    public void onoff()
+    public void onOff()
     {
-       // print("BRUH");
+      
         if (!filterOn)
         {
             filterOn = true;
+            TremoloButton.image.sprite = EnabledTremoloSprite;
         }
         else
         {
             filterOn = false;
+            TremoloButton.image.sprite = DisabledTremoloSprite;
         }
-
     }
 
     public void Accellorometer()
     {
-        //Debug.Log(Input.acceleration.x);
         float rotation = Input.acceleration.x;
         effectRate = map(rotation, -1.0f, 1.0f, rangeTremoloStart, rangeTremoloEnd);
-        //Debug.Log(effectRate);
-
     }
 
     float map(float s, float a1, float a2, float b1, float b2)
     {
         return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
-
 }
